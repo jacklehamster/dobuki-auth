@@ -18,6 +18,7 @@ export async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
     const userButtonDiv = (document.getElementById('user-button') ?? (() => {
       const div = document.body.appendChild(document.createElement('div'));
       div.id = 'user-button';
+      div.style.margin = '10px';
       return div;
     })()) as HTMLDivElement;
 
