@@ -50228,7 +50228,7 @@ var client = __toESM(require_client(), 1);
 
 // /Users/vincent/dobuki-auth/example/node_modules/dobuki-auth/src/index.ts
 var clerk_js = __toESM(require_clerk(), 1);
-async function signin() {
+async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
   const clerk = new clerk_js.Clerk(clerkPubKey);
   await clerk.load({});
   if (clerk.user) {
@@ -50253,9 +50253,26 @@ async function signin() {
       console.log("Session token:", sessionToken.substring(0, 10) + "...");
     }
   } else {
-    const signInDiv = document.getElementById("sign-in") ?? (() => {
+    const overlay = document.getElementById("overlay") ?? (() => {
       const div = document.body.appendChild(document.createElement("div"));
+      div.id = "overlay";
+      div.style.position = "fixed";
+      div.style.top = "0";
+      div.style.left = "0";
+      div.style.width = "100%";
+      div.style.height = "100%";
+      div.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      div.style.zIndex = "1000";
+      div.style.backdropFilter = "blur(10px)";
+      return div;
+    })();
+    const signInDiv = document.getElementById("sign-in") ?? (() => {
+      const div = overlay.appendChild(document.createElement("div"));
       div.id = "sign-in";
+      div.style.position = "absolute";
+      div.style.top = "50%";
+      div.style.left = "50%";
+      div.style.transform = "translate(-50%, -50%)";
       return div;
     })();
     clerk.mountSignIn(signInDiv, {
@@ -50265,7 +50282,7 @@ async function signin() {
     });
   }
 }
-var clerkPubKey = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
+var DEFAULT_CLERK_PUB_KEY = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
 signin();
 
 // src/index.tsx

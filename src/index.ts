@@ -3,13 +3,13 @@
 /// <reference lib="dom.iterable" />
 
 // const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-const clerkPubKey = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
+const DEFAULT_CLERK_PUB_KEY = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
 
 
 import { Clerk } from "@clerk/clerk-js";
 
-export async function signin() {
-  const clerk = new Clerk(clerkPubKey!);
+export async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
+  const clerk = new Clerk(clerkPubKey);
   await clerk.load({
     // Set load options here
   });
@@ -39,9 +39,29 @@ export async function signin() {
       console.log("Session token:", sessionToken.substring(0, 10) + "...");
     }
   } else {
-    const signInDiv = (document.getElementById('sign-in') ?? (() => {
+    //  Black translucent overlay
+    const overlay = (document.getElementById('overlay') ?? (() => {
       const div = document.body.appendChild(document.createElement('div'));
+      div.id = 'overlay';
+      div.style.position = 'fixed';
+      div.style.top = '0';
+      div.style.left = '0';
+      div.style.width = '100%';
+      div.style.height = '100%';
+      div.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+      div.style.zIndex = '1000';
+      //  blur
+      div.style.backdropFilter = 'blur(10px)';
+      return div;
+    })()) as HTMLDivElement;
+
+    const signInDiv = (document.getElementById('sign-in') ?? (() => {
+      const div = overlay.appendChild(document.createElement('div'));
       div.id = 'sign-in';
+      div.style.position = 'absolute';
+      div.style.top = '50%';
+      div.style.left = '50%';
+      div.style.transform = 'translate(-50%, -50%)';
       return div;
     })()) as HTMLDivElement;
 
