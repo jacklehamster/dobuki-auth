@@ -5,21 +5,24 @@
 import React from "react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Hello, HelloComponent } from "bun-template";
+import "dobuki-auth";
 
 const div = document.body.appendChild(document.createElement("div"));
 
 
 //  HelloComponent
 const root = createRoot(div);
-root.render(location.search.indexOf("strict-mode") >= 0 ?
+root.render(
   <StrictMode>
-    <HelloComponent />
-  </StrictMode> : <HelloComponent />
+    {/* <input type="button" value="Signup" onClick={() => {
+      signup();
+    }} /> */}
+    {/* <input type="button" value="Signin" onClick={() => {
+      signin();
+    }} /> */}
+    {/* <input type="button" value="Signin UI" onClick={() => {
+      loginUI();
+    }} /> */}
+
+  </StrictMode>
 );
-
-//  Hello
-Hello.hello();
-
-
-export {Hello};
