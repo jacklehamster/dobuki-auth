@@ -50283,7 +50283,8 @@ async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
     });
   }
 }
-var DEFAULT_CLERK_PUB_KEY = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
+var DEFAULT_CLERK_PUB_KEY_PROD = "pk_live_Y2xlcmsuZG9idWtpLm5ldCQ";
+var DEFAULT_CLERK_PUB_KEY = DEFAULT_CLERK_PUB_KEY_PROD;
 signin();
 
 // src/index.tsx
