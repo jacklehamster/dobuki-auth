@@ -3,8 +3,9 @@
 /// <reference lib="dom.iterable" />
 
 // const clerkPubKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
-const DEFAULT_CLERK_PUB_KEY = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
-
+const DEFAULT_CLERK_PUB_KEY_DEV = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
+const DEFAULT_CLERK_PUB_KEY_PROD = "pk_live_Y2xlcmsuZG9idWtpLm5ldCQ";
+const DEFAULT_CLERK_PUB_KEY = DEFAULT_CLERK_PUB_KEY_PROD;
 
 import { Clerk } from "@clerk/clerk-js";
 
