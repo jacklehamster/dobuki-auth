@@ -6,7 +6,6 @@
 const DEFAULT_CLERK_PUB_KEY_DEV = "pk_test_YWxsb3dlZC1iaXNvbi0yLmNsZXJrLmFjY291bnRzLmRldiQ";
 const DEFAULT_CLERK_PUB_KEY_PROD = "pk_live_Y2xlcmsuZG9idWtpLm5ldCQ";
 const DEFAULT_CLERK_PUB_KEY = DEFAULT_CLERK_PUB_KEY_PROD;
-// const DEFAULT_CLERK_PUB_KEY = DEFAULT_CLERK_PUB_KEY_DEV;
 
 import { Clerk } from "@clerk/clerk-js";
 import { UserResource } from "@clerk/types";
@@ -33,7 +32,6 @@ const auth: Auth = {
     onLogOutListener.add(listener);
   },
 };
-export default auth;
 
 async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
   const clerk = new Clerk(clerkPubKey);
@@ -108,4 +106,7 @@ async function signin(clerkPubKey = DEFAULT_CLERK_PUB_KEY) {
   }
 }
 
-signin();
+export function signIn(dev = false) {
+  signin(dev ? DEFAULT_CLERK_PUB_KEY_DEV : DEFAULT_CLERK_PUB_KEY_PROD);
+  return auth;
+}

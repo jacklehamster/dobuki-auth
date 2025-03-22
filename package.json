@@ -45,7 +45,7 @@
     "dist"
   ],
   "devDependencies": {
-    "@dobuki/dev-dependencies": "^1.0.16",
+    "@dobuki/dev-dependencies": "^1.0.20",
     "@types/firebase": "^3.2.3",
     "firebaseui": "^6.1.0"
   },
