@@ -2,7 +2,7 @@
   "name": "dobuki-auth",
   "module": "src/index.ts",
   "description": "Authentication using Firebase",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "keywords": [
     "bun",
     "bunjs",
